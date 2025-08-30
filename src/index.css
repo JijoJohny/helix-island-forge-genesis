@@ -8,52 +8,59 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Island Forge Design System - Ocean & Tropical Theme */
-    --background: 220 26% 14%;
-    --foreground: 180 100% 95%;
+    /* Modern Island Forge Design System */
+    --background: 220 30% 8%;
+    --foreground: 210 20% 98%;
 
-    --card: 220 26% 16%;
-    --card-foreground: 180 100% 95%;
+    --card: 220 25% 12%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 220 26% 16%;
-    --popover-foreground: 180 100% 95%;
+    --popover: 220 25% 12%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 195 100% 50%;
-    --primary-foreground: 220 26% 14%;
-    --primary-glow: 180 100% 60%;
+    --primary: 200 100% 60%;
+    --primary-foreground: 220 30% 8%;
+    --primary-glow: 180 100% 70%;
 
-    --secondary: 173 100% 35%;
-    --secondary-foreground: 180 100% 95%;
+    --secondary: 160 100% 45%;
+    --secondary-foreground: 220 30% 8%;
 
-    --muted: 220 26% 18%;
-    --muted-foreground: 180 20% 70%;
+    --muted: 220 20% 15%;
+    --muted-foreground: 220 15% 65%;
 
-    --accent: 35 100% 65%;
-    --accent-foreground: 220 26% 14%;
+    --accent: 30 100% 70%;
+    --accent-foreground: 220 30% 8%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 180 100% 95%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: 220 26% 22%;
-    --input: 220 26% 18%;
-    --ring: 195 100% 50%;
+    --border: 220 20% 20%;
+    --input: 220 20% 15%;
+    --ring: 200 100% 60%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Ocean Gradients */
-    --gradient-ocean: linear-gradient(135deg, hsl(195 100% 50%), hsl(173 100% 35%));
-    --gradient-sunset: linear-gradient(135deg, hsl(35 100% 65%), hsl(15 100% 70%));
-    --gradient-deep: linear-gradient(180deg, hsl(220 26% 14%), hsl(220 26% 8%));
-    --gradient-island: linear-gradient(45deg, hsl(173 100% 35%), hsl(120 60% 50%));
+    /* Enhanced Modern Gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(200 100% 60%) 0%, hsl(180 100% 50%) 50%, hsl(160 100% 45%) 100%);
+    --gradient-sunset: linear-gradient(135deg, hsl(30 100% 70%) 0%, hsl(15 100% 65%) 50%, hsl(350 85% 60%) 100%);
+    --gradient-deep: linear-gradient(180deg, hsl(220 30% 8%) 0%, hsl(230 35% 6%) 50%, hsl(240 40% 4%) 100%);
+    --gradient-island: linear-gradient(45deg, hsl(160 100% 45%) 0%, hsl(120 80% 50%) 50%, hsl(80 70% 55%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(220 25% 12% / 0.8) 0%, hsl(220 25% 16% / 0.4) 100%);
+    --gradient-mesh: radial-gradient(circle at 20% 80%, hsl(200 100% 60% / 0.1) 0%, transparent 50%), 
+                     radial-gradient(circle at 80% 20%, hsl(160 100% 45% / 0.1) 0%, transparent 50%),
+                     radial-gradient(circle at 40% 40%, hsl(30 100% 70% / 0.1) 0%, transparent 50%);
 
-    /* Glows & Effects */
-    --glow-ocean: 0 0 50px hsl(195 100% 50% / 0.3);
-    --glow-accent: 0 0 30px hsl(35 100% 65% / 0.4);
-    --shadow-glass: 0 8px 32px hsl(220 26% 8% / 0.4);
+    /* Modern Shadows & Effects */
+    --glow-ocean: 0 0 60px hsl(200 100% 60% / 0.4);
+    --glow-accent: 0 0 40px hsl(30 100% 70% / 0.5);
+    --shadow-glass: 0 8px 32px hsl(220 30% 4% / 0.6), 0 2px 16px hsl(220 30% 4% / 0.3);
+    --shadow-elevation: 0 4px 16px hsl(220 30% 4% / 0.2), 0 8px 32px hsl(220 30% 4% / 0.1);
+    --shadow-floating: 0 12px 40px hsl(220 30% 4% / 0.3), 0 4px 16px hsl(220 30% 4% / 0.2);
 
-    /* Animations */
+    /* Smooth Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-elastic: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     --radius: 0.75rem;
 

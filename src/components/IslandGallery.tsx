@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Eye, Share2 } from "lucide-react";
+import { ExternalLink, Eye, Share2, Compass } from "lucide-react";
 
 interface IslandNFT {
   id: string;
@@ -53,52 +53,57 @@ const rarityColors = {
 
 export function IslandGallery({ islands = mockIslands }: IslandGalleryProps) {
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold mb-2">Your Island Collection</h2>
-        <p className="text-muted-foreground">
+    <div className="space-y-10">
+      <div className="text-center space-y-4">
+        <h2 className="text-4xl font-bold bg-gradient-ocean bg-clip-text text-transparent">Your Island Collection</h2>
+        <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">
           Discover and manage your unique procedurally generated islands
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {islands.map((island) => (
           <Card
             key={island.id}
-            className="bg-card/50 border-border/30 backdrop-blur-md hover:bg-card/70 transition-all duration-300 group"
+            className="group bg-gradient-glass border-border/40 backdrop-blur-xl hover:border-primary/30 transition-all duration-500 hover:scale-[1.02] shadow-elevation hover:shadow-floating rounded-3xl overflow-hidden"
           >
-            <CardContent className="p-4">
+            <CardContent className="p-0">
               {/* Island Image */}
-              <div className="relative mb-4 rounded-lg overflow-hidden bg-gradient-ocean aspect-square">
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/20" />
-                <div className="absolute top-2 right-2">
+              <div className="relative aspect-square bg-gradient-ocean rounded-t-3xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/10 to-black/30" />
+                <div className="absolute top-4 right-4 z-10">
                   <Badge
-                    className={`${rarityColors[island.rarity as keyof typeof rarityColors]} text-xs`}
+                    className={`${rarityColors[island.rarity as keyof typeof rarityColors]} text-xs px-3 py-1 rounded-full shadow-elevation`}
                   >
                     {island.rarity}
                   </Badge>
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center text-foreground/50 text-sm">
-                  Island Preview
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center space-y-2">
+                    <div className="w-20 h-20 mx-auto rounded-2xl bg-foreground/10 backdrop-blur-sm flex items-center justify-center">
+                      <Compass className="h-10 w-10 text-foreground/70" />
+                    </div>
+                    <p className="text-sm text-foreground/80 font-medium">Island Preview</p>
+                  </div>
                 </div>
               </div>
 
               {/* Island Info */}
-              <div className="space-y-3">
+              <div className="p-6 space-y-4">
                 <div>
-                  <h3 className="font-semibold text-lg">{island.name}</h3>
+                  <h3 className="font-bold text-xl mb-1">{island.name}</h3>
                   <p className="text-sm text-muted-foreground">
                     Minted: {new Date(island.mintDate).toLocaleDateString()}
                   </p>
                 </div>
 
                 {/* Features */}
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-2">
                   {island.features.map((feature, index) => (
                     <Badge
                       key={index}
                       variant="outline"
-                      className="text-xs bg-background/50"
+                      className="text-xs bg-background/30 border-border/30 rounded-full px-3 py-1"
                     >
                       {feature}
                     </Badge>
@@ -106,26 +111,25 @@ export function IslandGallery({ islands = mockIslands }: IslandGalleryProps) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-2 pt-2">
+                <div className="grid grid-cols-3 gap-3 pt-2">
                   <Button
                     variant="glass"
                     size="sm"
-                    className="flex-1"
+                    className="rounded-xl"
                   >
-                    <Eye className="h-4 w-4 mr-1" />
-                    View
+                    <Eye className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="glass"
                     size="sm"
-                    className="flex-1"
+                    className="rounded-xl"
                   >
-                    <Share2 className="h-4 w-4 mr-1" />
-                    Share
+                    <Share2 className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
+                    className="rounded-xl hover:bg-background/40"
                   >
                     <ExternalLink className="h-4 w-4" />
                   </Button>
@@ -137,13 +141,13 @@ export function IslandGallery({ islands = mockIslands }: IslandGalleryProps) {
       </div>
 
       {islands.length === 0 && (
-        <Card className="bg-card/30 border-border/20 backdrop-blur-sm">
-          <CardContent className="p-8 text-center">
-            <div className="text-muted-foreground mb-4">
-              <Eye className="h-12 w-12 mx-auto mb-2 opacity-50" />
+        <Card className="bg-gradient-glass border-border/30 backdrop-blur-xl shadow-elevation rounded-3xl">
+          <CardContent className="p-12 text-center">
+            <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-muted/20 flex items-center justify-center">
+              <Eye className="h-12 w-12 text-muted-foreground/50" />
             </div>
-            <h3 className="text-lg font-medium mb-2">No Islands Found</h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-2xl font-bold mb-3">No Islands Found</h3>
+            <p className="text-lg text-muted-foreground font-light max-w-md mx-auto">
               Connect your wallet and forge your first island to get started!
             </p>
           </CardContent>

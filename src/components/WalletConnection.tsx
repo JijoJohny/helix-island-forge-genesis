@@ -48,39 +48,42 @@ export function WalletConnection({ onConnect }: WalletConnectionProps) {
 
   if (isConnected && walletAddress) {
     return (
-      <Card className="bg-card/50 border-border/30 backdrop-blur-md">
-        <CardContent className="p-4 flex items-center gap-3">
-          <CheckCircle className="h-5 w-5 text-secondary" />
-          <div>
-            <p className="text-sm font-medium">Wallet Connected</p>
-            <p className="text-xs text-muted-foreground">{formatAddress(walletAddress)}</p>
+      <Card className="bg-gradient-glass border-border/40 backdrop-blur-xl shadow-floating rounded-2xl">
+        <CardContent className="p-6 flex items-center gap-4">
+          <div className="p-3 rounded-xl bg-secondary/20 shadow-elevation">
+            <CheckCircle className="h-6 w-6 text-secondary" />
           </div>
+          <div className="flex-1">
+            <p className="text-base font-semibold text-foreground">Wallet Connected</p>
+            <p className="text-sm text-muted-foreground font-mono">{formatAddress(walletAddress)}</p>
+          </div>
+          <div className="w-3 h-3 rounded-full bg-secondary animate-pulse" />
         </CardContent>
       </Card>
     );
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <Button
         onClick={connectWallet}
         disabled={isConnecting}
         variant="ocean"
         size="lg"
         className={cn(
-          "w-full",
+          "w-full h-14 rounded-2xl text-base font-semibold shadow-floating hover:shadow-glow-ocean transition-all duration-300",
           isConnecting && "animate-pulse"
         )}
       >
-        <Wallet className="mr-2 h-5 w-5" />
+        <Wallet className="mr-3 h-6 w-6" />
         {isConnecting ? "Connecting..." : "Connect Wallet"}
       </Button>
       
       {error && (
-        <Card className="bg-destructive/10 border-destructive/20">
-          <CardContent className="p-3 flex items-center gap-2">
-            <AlertCircle className="h-4 w-4 text-destructive" />
-            <p className="text-sm text-destructive">{error}</p>
+        <Card className="bg-destructive/10 border-destructive/30 rounded-2xl">
+          <CardContent className="p-4 flex items-center gap-3">
+            <AlertCircle className="h-5 w-5 text-destructive" />
+            <p className="text-sm text-destructive font-medium">{error}</p>
           </CardContent>
         </Card>
       )}

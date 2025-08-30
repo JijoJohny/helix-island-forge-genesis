@@ -54,30 +54,34 @@ export function IslandForge({ isConnected, onGenerate }: IslandForgeProps) {
   };
 
   return (
-    <Card className="bg-gradient-deep border-border/30 backdrop-blur-md">
-      <CardHeader className="text-center">
-        <CardTitle className="text-2xl flex items-center justify-center gap-2">
-          <Compass className="h-6 w-6 text-primary animate-float" />
+    <Card className="bg-gradient-glass border-border/40 backdrop-blur-xl shadow-floating rounded-3xl overflow-hidden">
+      <CardHeader className="text-center py-8 bg-gradient-to-br from-background/20 to-transparent">
+        <CardTitle className="text-3xl flex items-center justify-center gap-3 font-bold">
+          <div className="p-3 rounded-2xl bg-primary/20 shadow-elevation">
+            <Compass className="h-8 w-8 text-primary animate-float" />
+          </div>
           Island Forge
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg text-muted-foreground font-light mt-3">
           Generate unique procedural islands based on your NFT collection
         </CardDescription>
       </CardHeader>
       
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-8 p-8">
         {/* Island Features Preview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {islandFeatures.map((feature, index) => (
             <div
               key={index}
-              className="flex flex-col items-center p-3 rounded-lg bg-card/30 border border-border/20 backdrop-blur-sm"
+              className="group flex flex-col items-center p-6 rounded-2xl bg-gradient-glass border border-border/30 backdrop-blur-xl hover:border-primary/30 transition-all duration-300 hover:scale-105"
             >
-              <feature.icon className="h-8 w-8 text-primary mb-2" />
-              <p className="text-xs font-medium text-center mb-1">{feature.name}</p>
+              <div className="p-4 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300 mb-4">
+                <feature.icon className="h-10 w-10 text-primary" />
+              </div>
+              <p className="text-sm font-semibold text-center mb-2">{feature.name}</p>
               <Badge
                 variant="secondary"
-                className={`text-xs ${rarityColors[feature.rarity as keyof typeof rarityColors]}`}
+                className={`text-xs px-3 py-1 rounded-full ${rarityColors[feature.rarity as keyof typeof rarityColors]}`}
               >
                 {feature.rarity}
               </Badge>
@@ -87,40 +91,48 @@ export function IslandForge({ isConnected, onGenerate }: IslandForgeProps) {
 
         {/* Forge Progress */}
         {isForging && (
-          <div className="space-y-3">
-            <Progress value={progress} className="w-full" />
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <Loader2 className="h-4 w-4 animate-spin" />
-              {currentStep}
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <Progress value={progress} className="w-full h-3 rounded-full" />
+              <div className="flex items-center justify-center gap-3 text-base text-muted-foreground font-medium">
+                <div className="p-2 rounded-full bg-primary/20">
+                  <Loader2 className="h-5 w-5 animate-spin text-primary" />
+                </div>
+                {currentStep}
+              </div>
             </div>
           </div>
         )}
 
         {/* Forge Button */}
-        <Button
-          onClick={handleForge}
-          disabled={!isConnected || isForging}
-          variant="forge"
-          size="lg"
-          className="w-full"
-        >
-          {isForging ? (
-            <>
-              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Forging Island...
-            </>
-          ) : (
-            <>
-              <Sparkles className="mr-2 h-5 w-5" />
-              Forge New Island
-            </>
-          )}
-        </Button>
+        <div className="pt-4">
+          <Button
+            onClick={handleForge}
+            disabled={!isConnected || isForging}
+            variant="forge"
+            size="lg"
+            className="w-full h-16 rounded-2xl text-lg font-semibold shadow-floating hover:shadow-glow-accent transition-all duration-300"
+          >
+            {isForging ? (
+              <>
+                <Loader2 className="mr-3 h-6 w-6 animate-spin" />
+                Forging Island...
+              </>
+            ) : (
+              <>
+                <Sparkles className="mr-3 h-6 w-6" />
+                Forge New Island
+              </>
+            )}
+          </Button>
+        </div>
         
         {!isConnected && (
-          <p className="text-center text-sm text-muted-foreground">
-            Connect your wallet to start forging islands
-          </p>
+          <div className="text-center py-6 px-8 rounded-2xl bg-muted/20 border border-border/20">
+            <p className="text-base text-muted-foreground font-medium">
+              Connect your wallet to start forging islands
+            </p>
+          </div>
         )}
       </CardContent>
     </Card>

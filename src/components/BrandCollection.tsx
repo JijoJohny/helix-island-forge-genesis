@@ -96,32 +96,34 @@ export function BrandCollection({ isConnected, connectedAddress }: BrandCollecti
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-10">
       {/* Brand Header */}
-      <Card className="bg-card/50 border-border/30 backdrop-blur-md">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold bg-gradient-sunset bg-clip-text text-transparent">
+      <Card className="bg-gradient-glass border-border/40 backdrop-blur-xl shadow-floating rounded-3xl overflow-hidden">
+        <CardHeader className="text-center py-10 bg-gradient-to-br from-background/20 to-transparent">
+          <CardTitle className="text-4xl font-bold bg-gradient-sunset bg-clip-text text-transparent mb-4">
             {brandData.name} Collection
           </CardTitle>
-          <p className="text-muted-foreground">{brandData.description}</p>
+          <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">{brandData.description}</p>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-8 p-8">
           {/* Progress Bar */}
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span>Collection Progress</span>
-              <span className="font-medium">{ownedCount}/{brandData.requiredCount}</span>
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-lg font-semibold">Collection Progress</span>
+              <span className="text-2xl font-bold bg-gradient-ocean bg-clip-text text-transparent">{ownedCount}/{brandData.requiredCount}</span>
             </div>
-            <Progress value={progressPercentage} className="h-3" />
+            <Progress value={progressPercentage} className="h-4 rounded-full shadow-elevation" />
           </div>
 
           {/* Master NFT Claim Section */}
           {hasMasterNFT ? (
-            <Card className="bg-gradient-sunset/10 border-accent/30">
-              <CardContent className="p-4 text-center">
-                <Crown className="h-8 w-8 mx-auto mb-2 text-accent" />
-                <h4 className="font-semibold text-accent">Master NFT Claimed!</h4>
-                <p className="text-sm text-muted-foreground">
+            <Card className="bg-gradient-sunset/10 border-accent/40 rounded-2xl shadow-elevation">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-accent/20 flex items-center justify-center">
+                  <Crown className="h-10 w-10 text-accent" />
+                </div>
+                <h4 className="text-xl font-bold text-accent mb-2">Master NFT Claimed!</h4>
+                <p className="text-base text-muted-foreground font-medium">
                   You now own the exclusive {brandData.masterNFT.name}
                 </p>
               </CardContent>
@@ -132,9 +134,9 @@ export function BrandCollection({ isConnected, connectedAddress }: BrandCollecti
               disabled={!canClaimMaster || isClaimingMaster}
               variant={canClaimMaster ? "ocean" : "outline"}
               size="lg"
-              className="w-full"
+              className="w-full h-16 rounded-2xl text-lg font-semibold shadow-floating hover:shadow-glow-ocean transition-all duration-300"
             >
-              <Crown className="mr-2 h-5 w-5" />
+              <Crown className="mr-3 h-6 w-6" />
               {isClaimingMaster ? "Claiming Master NFT..." : 
                canClaimMaster ? "Claim Master NFT" : 
                `Collect ${brandData.requiredCount - ownedCount} more NFTs to unlock`}
@@ -144,7 +146,7 @@ export function BrandCollection({ isConnected, connectedAddress }: BrandCollecti
       </Card>
 
       {/* NFT Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
         {brandData.nfts.map((nft) => {
           const isOwned = ownedNFTs.some(owned => owned.id === nft.id);
           
@@ -152,32 +154,40 @@ export function BrandCollection({ isConnected, connectedAddress }: BrandCollecti
             <Card
               key={nft.id}
               className={cn(
-                "relative transition-all duration-300 hover:scale-105",
+                "group relative transition-all duration-300 hover:scale-105 rounded-2xl overflow-hidden",
                 isOwned 
-                  ? "bg-card/50 border-border/30 backdrop-blur-md" 
-                  : "bg-card/20 border-border/10 backdrop-blur-sm opacity-60"
+                  ? "bg-gradient-glass border-border/40 backdrop-blur-xl shadow-elevation hover:shadow-floating" 
+                  : "bg-background/20 border-border/20 backdrop-blur-sm opacity-60 hover:opacity-80"
               )}
             >
-              <CardContent className="p-3">
+              <CardContent className="p-4">
                 {/* NFT Image */}
-                <div className="relative aspect-square rounded-lg overflow-hidden mb-2 bg-gradient-ocean">
-                  <div className="absolute inset-0 flex items-center justify-center text-foreground/30 text-xs">
-                    NFT #{nft.id.split('-')[1]}
+                <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-gradient-ocean">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-8 h-8 mx-auto rounded-lg bg-foreground/20 flex items-center justify-center mb-2">
+                        <span className="text-xs font-bold text-foreground/70">#{nft.id.split('-')[1]}</span>
+                      </div>
+                    </div>
                   </div>
                   
                   {/* Ownership Status */}
-                  <div className="absolute top-1 right-1">
+                  <div className="absolute top-2 right-2">
                     {isOwned ? (
-                      <CheckCircle className="h-4 w-4 text-secondary" />
+                      <div className="p-1 rounded-full bg-secondary/20 shadow-elevation">
+                        <CheckCircle className="h-4 w-4 text-secondary" />
+                      </div>
                     ) : (
-                      <Lock className="h-4 w-4 text-muted-foreground" />
+                      <div className="p-1 rounded-full bg-background/20">
+                        <Lock className="h-4 w-4 text-muted-foreground" />
+                      </div>
                     )}
                   </div>
                   
                   {/* Rarity Badge */}
-                  <div className="absolute bottom-1 left-1">
+                  <div className="absolute bottom-2 left-2">
                     <Badge
-                      className={`${rarityColors[nft.rarity as keyof typeof rarityColors]} text-xs px-1 py-0`}
+                      className={`${rarityColors[nft.rarity as keyof typeof rarityColors]} text-xs px-2 py-1 rounded-full shadow-elevation`}
                     >
                       {nft.rarity}
                     </Badge>
@@ -185,15 +195,15 @@ export function BrandCollection({ isConnected, connectedAddress }: BrandCollecti
                 </div>
 
                 {/* NFT Name */}
-                <h4 className="text-xs font-medium truncate">{nft.name}</h4>
+                <h4 className="text-xs font-semibold truncate mb-2 text-center">{nft.name}</h4>
 
                 {/* Action Button */}
                 {!isOwned && (
                   <Button
                     onClick={() => handleBuyNFT(nft.id)}
-                    variant="ghost"
+                    variant="glass"
                     size="sm"
-                    className="w-full mt-2 h-6 text-xs"
+                    className="w-full h-8 text-xs rounded-xl"
                   >
                     <ShoppingCart className="h-3 w-3 mr-1" />
                     Buy
@@ -207,32 +217,36 @@ export function BrandCollection({ isConnected, connectedAddress }: BrandCollecti
 
       {/* Master NFT Preview */}
       {canClaimMaster || hasMasterNFT ? (
-        <Card className="bg-gradient-sunset/5 border-accent/20 backdrop-blur-md">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Trophy className="h-6 w-6 text-accent" />
+        <Card className="bg-gradient-sunset/5 border-accent/30 backdrop-blur-xl shadow-floating rounded-3xl overflow-hidden">
+          <CardHeader className="py-8">
+            <CardTitle className="flex items-center justify-center gap-3 text-2xl">
+              <div className="p-3 rounded-2xl bg-accent/20 shadow-elevation">
+                <Trophy className="h-8 w-8 text-accent" />
+              </div>
               Master NFT Preview
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="aspect-square rounded-lg bg-gradient-sunset/20 flex items-center justify-center">
-                <Crown className="h-16 w-16 text-accent/50" />
+          <CardContent className="p-8">
+            <div className="grid lg:grid-cols-2 gap-8">
+              <div className="aspect-square rounded-3xl bg-gradient-sunset/20 shadow-elevation flex items-center justify-center">
+                <Crown className="h-24 w-24 text-accent/50" />
               </div>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div>
-                  <h3 className="font-semibold text-lg">{brandData.masterNFT.name}</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="text-2xl font-bold mb-3">{brandData.masterNFT.name}</h3>
+                  <p className="text-base text-muted-foreground font-light leading-relaxed">
                     {brandData.masterNFT.description}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-medium mb-2">Exclusive Benefits:</h4>
-                  <ul className="space-y-1">
+                  <h4 className="text-lg font-semibold mb-4">Exclusive Benefits:</h4>
+                  <ul className="space-y-3">
                     {brandData.masterNFT.benefits.map((benefit, index) => (
-                      <li key={index} className="text-sm text-muted-foreground flex items-center gap-2">
-                        <CheckCircle className="h-3 w-3 text-secondary" />
-                        {benefit}
+                      <li key={index} className="flex items-center gap-3 text-sm text-muted-foreground">
+                        <div className="p-1 rounded-full bg-secondary/20">
+                          <CheckCircle className="h-4 w-4 text-secondary" />
+                        </div>
+                        <span className="font-medium">{benefit}</span>
                       </li>
                     ))}
                   </ul>
