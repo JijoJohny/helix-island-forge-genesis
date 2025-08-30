@@ -4,13 +4,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { WalletConnection } from "@/components/WalletConnection";
 import { IslandForge } from "@/components/IslandForge";
 import { IslandGallery } from "@/components/IslandGallery";
+import { BrandCollection } from "@/components/BrandCollection";
 import { Anchor, Waves, Github, Twitter } from "lucide-react";
 import heroIsland from "@/assets/hero-island.jpg";
 
 const Index = () => {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
   const [connectedAddress, setConnectedAddress] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<"forge" | "gallery">("forge");
+  const [activeTab, setActiveTab] = useState<"forge" | "gallery" | "brands">("forge");
 
   const handleWalletConnect = (address: string) => {
     setIsWalletConnected(true);
@@ -93,6 +94,13 @@ const Index = () => {
                 >
                   My Collection
                 </Button>
+                <Button
+                  variant={activeTab === "brands" ? "ocean" : "ghost"}
+                  onClick={() => setActiveTab("brands")}
+                  size="sm"
+                >
+                  Brand Collections
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -104,8 +112,13 @@ const Index = () => {
                 isConnected={isWalletConnected}
                 onGenerate={() => setActiveTab("gallery")}
               />
-            ) : (
+            ) : activeTab === "gallery" ? (
               <IslandGallery />
+            ) : (
+              <BrandCollection 
+                isConnected={isWalletConnected}
+                connectedAddress={connectedAddress}
+              />
             )}
           </div>
         </div>
