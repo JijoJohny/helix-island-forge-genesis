@@ -27,11 +27,12 @@ export default {
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					glow: 'hsl(var(--primary-glow))'
+					soft: 'hsl(var(--primary-soft))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					foreground: 'hsl(var(--secondary-foreground))',
+					soft: 'hsl(var(--secondary-soft))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -43,7 +44,8 @@ export default {
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					foreground: 'hsl(var(--accent-foreground))',
+					soft: 'hsl(var(--accent-soft))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -52,6 +54,12 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				neu: {
+					base: 'hsl(var(--neu-base))',
+					light: 'hsl(var(--neu-light))',
+					dark: 'hsl(var(--neu-dark))',
+					pressed: 'hsl(var(--neu-pressed))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -70,19 +78,18 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			backgroundImage: {
-				'gradient-ocean': 'var(--gradient-ocean)',
-				'gradient-sunset': 'var(--gradient-sunset)',
-				'gradient-deep': 'var(--gradient-deep)',
-				'gradient-island': 'var(--gradient-island)',
-				'gradient-glass': 'var(--gradient-glass)',
-				'gradient-mesh': 'var(--gradient-mesh)'
+				'gradient-mystic': 'var(--gradient-mystic)',
+				'gradient-ethereal': 'var(--gradient-ethereal)',
+				'gradient-subtle': 'var(--gradient-subtle)'
 			},
 			boxShadow: {
-				'glow-ocean': 'var(--glow-ocean)',
-				'glow-accent': 'var(--glow-accent)',
-				'glass': 'var(--shadow-glass)',
-				'elevation': 'var(--shadow-elevation)',
-				'floating': 'var(--shadow-floating)'
+				'neu-raised': 'var(--shadow-neu-raised)',
+				'neu-inset': 'var(--shadow-neu-inset)',
+				'neu-pressed': 'var(--shadow-neu-pressed)',
+				'neu-soft': 'var(--shadow-neu-soft)',
+				'neu-floating': 'var(--shadow-neu-floating)',
+				'glow-mystic': 'var(--glow-mystic)',
+				'glow-ethereal': 'var(--glow-ethereal)'
 			},
 			spacing: {
 				'18': '4.5rem',
@@ -90,9 +97,8 @@ export default {
 				'128': '32rem'
 			},
 			transitionTimingFunction: {
-				'smooth': 'var(--transition-smooth)',
-				'bounce': 'var(--transition-bounce)',
-				'elastic': 'var(--transition-elastic)'
+				'neu': 'var(--transition-neu)',
+				'soft': 'var(--transition-soft)'
 			},
 			keyframes: {
 				'accordion-down': {
@@ -113,18 +119,23 @@ export default {
 				},
 				'float': {
 					'0%, 100%': { transform: 'translateY(0px)' },
-					'50%': { transform: 'translateY(-10px)' }
+					'50%': { transform: 'translateY(-2px)' }
 				},
-				'pulse-glow': {
-					'0%, 100%': { boxShadow: '0 0 20px hsl(200 100% 60% / 0.3)' },
-					'50%': { boxShadow: '0 0 40px hsl(200 100% 60% / 0.6)' }
+				'pulse-soft': {
+					'0%, 100%': { boxShadow: 'var(--shadow-neu-soft)' },
+					'50%': { boxShadow: 'var(--shadow-neu-floating)' }
+				},
+				'glow-subtle': {
+					'0%, 100%': { boxShadow: 'var(--shadow-neu-raised)' },
+					'50%': { boxShadow: 'var(--shadow-neu-raised), var(--glow-mystic)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'float': 'float 3s ease-in-out infinite',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
+				'float': 'float 6s ease-in-out infinite',
+				'pulse-soft': 'pulse-soft 4s ease-in-out infinite',
+				'glow-subtle': 'glow-subtle 3s ease-in-out infinite'
 			}
 		}
 	},

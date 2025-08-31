@@ -132,9 +132,9 @@ export function BrandCollection({ isConnected, connectedAddress }: BrandCollecti
             <Button
               onClick={handleClaimMaster}
               disabled={!canClaimMaster || isClaimingMaster}
-              variant={canClaimMaster ? "ocean" : "outline"}
+              variant={canClaimMaster ? "primary" : "outline"}
               size="lg"
-              className="w-full h-16 rounded-2xl text-lg font-semibold shadow-floating hover:shadow-glow-ocean transition-all duration-300"
+              className="w-full h-16 rounded-2xl text-lg font-semibold shadow-neu-floating hover:shadow-glow-mystic transition-neu"
             >
               <Crown className="mr-3 h-6 w-6" />
               {isClaimingMaster ? "Claiming Master NFT..." : 
@@ -201,9 +201,9 @@ export function BrandCollection({ isConnected, connectedAddress }: BrandCollecti
                 {!isOwned && (
                   <Button
                     onClick={() => handleBuyNFT(nft.id)}
-                    variant="glass"
+                    variant="secondary"
                     size="sm"
-                    className="w-full h-8 text-xs rounded-xl"
+                    className="w-full h-8 text-xs rounded-xl shadow-neu-soft"
                   >
                     <ShoppingCart className="h-3 w-3 mr-1" />
                     Buy

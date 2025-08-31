@@ -110,26 +110,25 @@ export function IslandGallery({ islands = mockIslands }: IslandGalleryProps) {
                   ))}
                 </div>
 
-                {/* Action Buttons */}
-                <div className="grid grid-cols-3 gap-3 pt-2">
+                 <div className="grid grid-cols-3 gap-3 pt-2">
                   <Button
-                    variant="glass"
+                    variant="secondary"
                     size="sm"
-                    className="rounded-xl"
+                    className="rounded-xl shadow-neu-soft"
                   >
                     <Eye className="h-4 w-4" />
                   </Button>
                   <Button
-                    variant="glass"
+                    variant="secondary"
                     size="sm"
-                    className="rounded-xl"
+                    className="rounded-xl shadow-neu-soft"
                   >
                     <Share2 className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="rounded-xl hover:bg-background/40"
+                    className="rounded-xl hover:bg-muted/20"
                   >
                     <ExternalLink className="h-4 w-4" />
                   </Button>
@@ -141,12 +140,12 @@ export function IslandGallery({ islands = mockIslands }: IslandGalleryProps) {
       </div>
 
       {islands.length === 0 && (
-        <Card className="bg-gradient-glass border-border/30 backdrop-blur-xl shadow-elevation rounded-3xl">
-          <CardContent className="p-12 text-center">
-            <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-muted/20 flex items-center justify-center">
+        <Card className="bg-neu-base border border-border/20 shadow-neu-inset rounded-3xl">
+          <CardContent className="p-16 text-center">
+            <div className="w-24 h-24 mx-auto mb-8 rounded-3xl bg-muted/10 shadow-neu-inset flex items-center justify-center">
               <Eye className="h-12 w-12 text-muted-foreground/50" />
             </div>
-            <h3 className="text-2xl font-bold mb-3">No Islands Found</h3>
+            <h3 className="text-2xl font-light mb-4 text-foreground">No Islands Found</h3>
             <p className="text-lg text-muted-foreground font-light max-w-md mx-auto">
               Connect your wallet and forge your first island to get started!
             </p>

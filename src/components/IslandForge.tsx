@@ -54,34 +54,34 @@ export function IslandForge({ isConnected, onGenerate }: IslandForgeProps) {
   };
 
   return (
-    <Card className="bg-gradient-glass border-border/40 backdrop-blur-xl shadow-floating rounded-3xl overflow-hidden">
-      <CardHeader className="text-center py-8 bg-gradient-to-br from-background/20 to-transparent">
-        <CardTitle className="text-3xl flex items-center justify-center gap-3 font-bold">
-          <div className="p-3 rounded-2xl bg-primary/20 shadow-elevation">
-            <Compass className="h-8 w-8 text-primary animate-float" />
+    <Card className="bg-neu-base border border-border/20 shadow-neu-floating rounded-3xl overflow-hidden max-w-4xl mx-auto">
+      <CardHeader className="text-center py-12 bg-gradient-subtle">
+        <CardTitle className="text-4xl flex items-center justify-center gap-4 font-light text-foreground">
+          <div className="p-4 rounded-2xl bg-primary-soft shadow-neu-raised">
+            <Compass className="h-10 w-10 text-primary animate-float" />
           </div>
           Island Forge
         </CardTitle>
-        <CardDescription className="text-lg text-muted-foreground font-light mt-3">
-          Generate unique procedural islands based on your NFT collection
+        <CardDescription className="text-lg text-muted-foreground font-light mt-4 max-w-2xl mx-auto">
+          Generate unique procedural islands based on your NFT collection using advanced algorithms
         </CardDescription>
       </CardHeader>
       
-      <CardContent className="space-y-8 p-8">
+      <CardContent className="space-y-12 p-12">
         {/* Island Features Preview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {islandFeatures.map((feature, index) => (
             <div
               key={index}
-              className="group flex flex-col items-center p-6 rounded-2xl bg-gradient-glass border border-border/30 backdrop-blur-xl hover:border-primary/30 transition-all duration-300 hover:scale-105"
+              className="group flex flex-col items-center p-8 rounded-3xl bg-neu-base border border-border/10 shadow-neu-raised hover:shadow-neu-floating transition-neu"
             >
-              <div className="p-4 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300 mb-4">
-                <feature.icon className="h-10 w-10 text-primary" />
+              <div className="p-6 rounded-2xl bg-primary-soft/30 group-hover:bg-primary-soft/50 transition-neu mb-6 shadow-neu-soft">
+                <feature.icon className="h-12 w-12 text-primary" />
               </div>
-              <p className="text-sm font-semibold text-center mb-2">{feature.name}</p>
+              <p className="text-sm font-medium text-center mb-3 text-foreground">{feature.name}</p>
               <Badge
                 variant="secondary"
-                className={`text-xs px-3 py-1 rounded-full ${rarityColors[feature.rarity as keyof typeof rarityColors]}`}
+                className={`text-xs px-4 py-1.5 rounded-full shadow-neu-soft ${rarityColors[feature.rarity as keyof typeof rarityColors]}`}
               >
                 {feature.rarity}
               </Badge>
@@ -91,12 +91,12 @@ export function IslandForge({ isConnected, onGenerate }: IslandForgeProps) {
 
         {/* Forge Progress */}
         {isForging && (
-          <div className="space-y-6">
-            <div className="space-y-3">
-              <Progress value={progress} className="w-full h-3 rounded-full" />
-              <div className="flex items-center justify-center gap-3 text-base text-muted-foreground font-medium">
-                <div className="p-2 rounded-full bg-primary/20">
-                  <Loader2 className="h-5 w-5 animate-spin text-primary" />
+          <div className="space-y-8 bg-gradient-subtle rounded-2xl p-8 border border-border/10 shadow-neu-inset">
+            <div className="space-y-4">
+              <Progress value={progress} className="w-full h-4 rounded-full" />
+              <div className="flex items-center justify-center gap-4 text-base text-muted-foreground font-medium">
+                <div className="p-3 rounded-full bg-primary-soft shadow-neu-raised">
+                  <Loader2 className="h-6 w-6 animate-spin text-primary" />
                 </div>
                 {currentStep}
               </div>
@@ -105,22 +105,22 @@ export function IslandForge({ isConnected, onGenerate }: IslandForgeProps) {
         )}
 
         {/* Forge Button */}
-        <div className="pt-4">
+        <div className="pt-6">
           <Button
             onClick={handleForge}
             disabled={!isConnected || isForging}
-            variant="forge"
+            variant="primary"
             size="lg"
-            className="w-full h-16 rounded-2xl text-lg font-semibold shadow-floating hover:shadow-glow-accent transition-all duration-300"
+            className="w-full h-16 rounded-2xl text-lg font-medium shadow-neu-floating hover:shadow-glow-mystic transition-neu"
           >
             {isForging ? (
               <>
-                <Loader2 className="mr-3 h-6 w-6 animate-spin" />
+                <Loader2 className="mr-4 h-6 w-6 animate-spin" />
                 Forging Island...
               </>
             ) : (
               <>
-                <Sparkles className="mr-3 h-6 w-6" />
+                <Sparkles className="mr-4 h-6 w-6" />
                 Forge New Island
               </>
             )}
@@ -128,8 +128,8 @@ export function IslandForge({ isConnected, onGenerate }: IslandForgeProps) {
         </div>
         
         {!isConnected && (
-          <div className="text-center py-6 px-8 rounded-2xl bg-muted/20 border border-border/20">
-            <p className="text-base text-muted-foreground font-medium">
+          <div className="text-center py-8 px-10 rounded-2xl bg-muted/10 border border-border/10 shadow-neu-inset">
+            <p className="text-base text-muted-foreground font-light">
               Connect your wallet to start forging islands
             </p>
           </div>
